@@ -29,3 +29,14 @@ app.get("/", async (req, res) => {
     console.error(err.message);
   }
 })
+
+app.post("/", async (req, res) => {
+  try {
+    const message = req.body.newMessage;
+    console.log(req.body.newMessage); 
+    const newMessage = await client.query(`INSERT INTO ${tableName} (message) VALUES ($1) RETURNING *`, [message]);
+    res.json(newMessage.rows[0]); 
+  } catch (err) {
+    console.error(err.message);
+  }
+})
