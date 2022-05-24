@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Chat } from './Chat';
 import { Send } from './Send';
+import { Delete } from './Delete';
 
 export function Wrapper() {
   
@@ -27,12 +28,17 @@ export function Wrapper() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
       })
+      document.getElementById('user-input').value = '';
       getMessages();
     } catch (err) {
       console.error(err.message);
     }
   }
 
+  const onClickButton = async () => {
+    const response = await fetch('http://localhost:5001/', {method: "DELETE"})
+    getMessages();
+  }
 
   useEffect(() => {
     getMessages();
@@ -43,6 +49,7 @@ export function Wrapper() {
     <div>
       <Chat messages={messages}/>
       <Send onSubmitForm={onSubmitForm} setNewMessage={setNewMessage}/>
+      <Delete onClick={onClickButton}/>
     </div>
   )
 }

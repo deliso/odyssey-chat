@@ -30,12 +30,22 @@ app.get("/", async (req, res) => {
   }
 })
 
+
 app.post("/", async (req, res) => {
   try {
     const message = req.body.newMessage;
     console.log(req.body.newMessage); 
     const newMessage = await client.query(`INSERT INTO ${tableName} (message) VALUES ($1) RETURNING *`, [message]);
     res.json(newMessage.rows[0]); 
+  } catch (err) {
+    console.error(err.message);
+  }
+})
+
+app.delete("/", async (req, res) => {
+  try {
+    const deleteChat = await client.query(`TRUNCATE TABLE ${tableName} RESTART IDENTITY`);
+    res.json('Chat was deleted'); 
   } catch (err) {
     console.error(err.message);
   }
