@@ -35,7 +35,7 @@ app.post("/", async (req, res) => {
   try {
     const message = req.body.newMessage;
     console.log(req.body.newMessage); 
-    const newMessage = await client.query(`INSERT INTO ${tableName} (message) VALUES ($1) RETURNING *`, [message]);
+    const newMessage = await client.query(`INSERT INTO ${tableName} (message, timestamp) VALUES ($1, $2) RETURNING *`, [message, new Date()]);
     res.json(newMessage.rows[0]); 
   } catch (err) {
     console.error(err.message);

@@ -1,38 +1,197 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;0,800;1,400&display=swap');
+
+:root {
+    --main-font:'JetBrains Mono', monospace;
+    --main-font-color: rgb(220, 229, 241);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.basic-button {
+    padding: 5px;
+    flex-shrink: 1;
+    font-family: var(--main-font);
+    font-size: 14px;
+    color: rgb(220, 229, 241);
+    border-color: transparent;
+    border-radius: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+    height: 90vh;
+    font-family: var(--main-font);
+    color: var(--main-font-color);
+    background-color: rgb(115, 129, 143);
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#app-name {
+    text-align: center;
+    padding: 5px;
+    font-size: 25px;
 }
 
-.App-link {
-  color: #61dafb;
+#chat-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(138, 154, 170);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#computer-name {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem; 
+    font-size: 30px;
+    background-color: rgb(78, 107, 134);
+}
+
+@media only screen and (min-width: 800px) {
+    #chat-wrapper {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        border-radius: 10px;
+    }
+    #computer-name {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+}
+
+#profile-name {
+    margin-left: 1%;
+    flex-grow: 1;
+    font-size: 20px;
+
+}
+
+#clear-chat {
+    margin-right: 1%;
+    background-color:rgb(76, 131, 182);
+}
+
+#session-date-wrapper {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    font-size: 13px;
+
+}
+
+#message-log {
+    padding: 15px;
+    max-height: 50vh;
+    min-height: 50vh;
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.computer-message {
+    width: fit-content;
+    margin-top: 15px;
+    margin-right:10%;
+    padding: 10px;
+    background-color:rgb(90, 120, 148);
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    
+}
+
+.user-message {
+    width: fit-content;
+    max-width: 90%;
+    margin-top:15px;
+    margin-left: auto;
+    padding: 10px;
+    text-align: right;
+    word-wrap: break-word;
+    background-color:rgb(64, 158, 130);        
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+}
+
+.computer-timestamp {
+    width:fit-content;
+    margin-top: -5px;
+    margin-left: 5px;
+    margin-right:10%;
+    padding: 5px;
+    font-size: 11px;
+    color: rgb(27, 78, 122);
+    background-color: rgb(188, 196, 204);
+    border-radius: 15px;
+    
+}
+
+.user-timestamp {
+    width:fit-content;
+    margin-top: -5px;
+    margin-left: auto;
+    margin-right: 5px;
+    padding: 5px;
+    font-size: 11px;
+    color: rgb(27, 78, 122);
+    background-color: rgb(188, 196, 204);
+    border-radius: 15px;
+
+}
+
+.user-input-wrapper {
+    padding: 15px;
+    overflow: auto;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+} 
+
+#user-form {
+    display:flex;
+    width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+    gap: 1rem;
+    align-content:stretch;
+    align-items: center;
+}
+
+#user-input {
+    min-width: 0;
+    padding: 5px;
+    flex-grow: 1;
+    font-family: var(--main-font);
+    font-size: 16px;
+    color: rgb(27, 78, 122);
+    background-color: rgb(188, 196, 204);
+    border-color: transparent;
+    border-radius: 10px;
+    outline:none;
+}
+
+#submit {
+    background-color:rgb(64, 158, 130);
+}
+
+/* Attribution: https://www.w3schools.com/howto/howto_css_animate_buttons.asp*/
+#submit:hover {
+    background-color: rgb(57, 145, 115);
+    transform: translateY(2px);
+}
+
+#clear-chat:hover {
+    background-color: rgb(69, 116, 160);
+    transform: translateY(2px);
+}
+
+footer {
+    padding-top: 5px;
+    overflow: auto;
+    display: block;
+    clear:both;
+    font-size: 11px;
+    text-align: center;
 }

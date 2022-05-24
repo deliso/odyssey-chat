@@ -2,14 +2,21 @@ import React from "react";
 
 export function Chat({ messages }) {
   return (
-    <div>
-      <h1>Hello chat</h1>
-      {messages.map(message => {
-        return <div>{message.message}</div>
-      })}
+      <>
+      <div id='message-log'>
+          {messages.map((message) => {
+            console.log('message' + message.message, 'timestamp' + message.timestamp);
+            return (
+            <>
+              <div className='user-message' key={`"message-${message.message}"`}>{message.message}</div>
+              <div className='user-timestamp' key={`"message-${message.timestamp}"`}>{message.timestamp}</div>
+            </>
+            )
+          })}
+          <div id="end-of-messages-wrapper"></div>
+      </div>
       
-      
-    </div>
+      </>
   )
 }
 
