@@ -21,10 +21,14 @@ export function Wrapper() {
     let monthName = month[currentDate.getMonth()];
     let currentDay = currentDate.getDate();
     return `${monthName} ${currentDay}, ${currentYear}`;
+
   };
+
+
+
   
   const [messages, setMessages] = useState([]);
-  const [timeStamps, setTimestamps] = useState([]);
+  //const [timeStamps, setTimestamps] = useState([]);
 
   const getMessages = async () => {
     try {
@@ -39,6 +43,7 @@ export function Wrapper() {
   
 
   const [newMessage, setNewMessage] = useState('');
+  const [computerMessage, setComputerMessage] = useState('');
 
   const onSubmitForm = async e => {
     e.preventDefault();
@@ -49,15 +54,23 @@ export function Wrapper() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
       })
-
       document.getElementById('user-input').value = '';
       setNewMessage('');
       getMessages();
       setTimeout(scrollToBottom, 50);
     } catch (err) {
       console.error(err.message);
+    } finally {
+        const computerBody = { computerMessage }
+        const computerResponse = await fetch('http://localhost:5001/', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(computerBody)
+      })
+      }
+      setTimeout(getMessages, 1000)
+      setTimeout(scrollToBottom, 1050);
     }
-  }
 
   const onClickButton = async () => {
     await fetch('http://localhost:5001/', {method: "DELETE"})

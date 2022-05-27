@@ -8,8 +8,8 @@ export function Chat({ messages }) {
             console.log('message' + message.message, 'timestamp' + message.timestamp);
             return (
             <>
-              <div className='user-message' key={`"message-${message.message}"`}>{message.message}</div>
-              <div className='user-timestamp' key={`"message-${message.timestamp}"`}>{message.timestamp}</div>
+              <div className={message.user_id === 'user' ? 'user-message' : 'computer-message'} key={`"message-${message.timestamp}"`}>{message.message}</div>
+              <div className={message.user_id === 'user' ? 'user-timestamp' : 'computer-timestamp'} key={`"timestamp-${message.timestamp}"`}>{message.timestamp}</div>
             </>
             )
           })}
